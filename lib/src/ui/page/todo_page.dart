@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../dialog/input_dialog.dart';
 import 'todo_item.dart';
 
-class TodoPage extends ConsumerWidget {
+class TodoPage extends HookConsumerWidget {
   const TodoPage({super.key});
 
   @override
@@ -18,6 +20,9 @@ class TodoPage extends ConsumerWidget {
       'eat',
     ];
 
+    //InputDialogを閉じた際にTodoPageをリビルドするためのState
+    final setState = useState(0);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Mirror Todo'),
@@ -28,7 +33,16 @@ class TodoPage extends ConsumerWidget {
           ),
           IconButton(
             icon: const Icon(Icons.add_circle_outline),
-            onPressed: () {},
+            onPressed: () async {
+              await showDialog<void>(
+                context: context,
+                barrierDismissible: false,
+                builder: (BuildContext context) {
+                  return const InputDialog();
+                },
+              );
+              setState.value++;
+            },
           ),
         ],
       ),
