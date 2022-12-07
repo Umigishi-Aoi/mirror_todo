@@ -13,9 +13,6 @@ class TodoPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    //InputDialogを閉じた際にTodoPageをリビルドするためのState
-    final setState = useState(0);
-
     final initializeDatabase = useMemoized<Future<void>>(
       () {
         return ref.read(todoRepositoryProvider).init();
@@ -68,7 +65,7 @@ class TodoPage extends HookConsumerWidget {
       body: GestureDetector(
         onTap: () async {
           await _showInputDialog(context);
-          setState.value++;
+          return ref.refresh(todoListProvider);
         },
         child: todoListAsync.when(
           error: (e, st) => Text(e.toString()),
@@ -77,7 +74,10 @@ class TodoPage extends HookConsumerWidget {
             return ListView.builder(
               itemCount: todos.length,
               itemBuilder: (BuildContext context, int index) {
-                return TodoItem(todo: todos[index].todo);
+                return TodoItem(
+                  key: ValueKey(todos[index].id),
+                  todoDto: todos[index],
+                );
               },
             );
           },
