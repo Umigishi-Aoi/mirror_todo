@@ -45,20 +45,17 @@ class TodoPage extends HookConsumerWidget {
           IconButton(
             icon: const Icon(Icons.add_circle_outline),
             onPressed: () async {
-              await showDialog<void>(
-                context: context,
-                barrierDismissible: false,
-                builder: (BuildContext context) {
-                  return const InputDialog();
-                },
-              );
+              await _showInputDialog(context);
               setState.value++;
             },
           ),
         ],
       ),
       body: GestureDetector(
-        onTap: () {},
+        onTap: () async {
+          await _showInputDialog(context);
+          setState.value++;
+        },
         child: ListView.builder(
           itemCount: todos.length,
           itemBuilder: (BuildContext context, int index) {
@@ -66,6 +63,16 @@ class TodoPage extends HookConsumerWidget {
           },
         ),
       ),
+    );
+  }
+
+  Future<void> _showInputDialog(BuildContext context) async {
+    await showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return const InputDialog();
+      },
     );
   }
 }
