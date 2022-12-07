@@ -6,7 +6,7 @@ import 'repository/todo_repository.dart';
 
 part 'providers.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 TodoDatabase todoDatabase(TodoDatabaseRef ref) {
   return TodoDatabase();
 }
