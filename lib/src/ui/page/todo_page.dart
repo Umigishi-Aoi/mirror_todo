@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import '../../constants/constants.dart';
+import '../../providers.dart';
 import '../dialog/input_dialog.dart';
 import 'todo_item.dart';
 
@@ -12,18 +13,31 @@ class TodoPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    //temp
-    final todos = [
-      'study flutter',
-      'exercise',
-      'eat',
-      'study flutter',
-      'exercise',
-      'eat',
-    ];
-
     //InputDialogを閉じた際にTodoPageをリビルドするためのState
     final setState = useState(0);
+
+    final initializeDatabase = useMemoized<Future<void>>(
+      () {
+        return ref.read(todoRepositoryProvider).init();
+      },
+      [],
+    );
+
+    final isInitialized = useFuture(initializeDatabase);
+
+    if (isInitialized.connectionState == ConnectionState.waiting) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+
+    if (isInitialized.hasError) {
+      return Center(
+        child: Text('Error: ${isInitialized.error}'),
+      );
+    }
+
+    final todoListAsync = ref.watch(todoListProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -56,10 +70,16 @@ class TodoPage extends HookConsumerWidget {
           await _showInputDialog(context);
           setState.value++;
         },
-        child: ListView.builder(
-          itemCount: todos.length,
-          itemBuilder: (BuildContext context, int index) {
-            return TodoItem(todo: todos[index]);
+        child: todoListAsync.when(
+          error: (e, st) => Text(e.toString()),
+          loading: CircularProgressIndicator.new,
+          data: (todos) {
+            return ListView.builder(
+              itemCount: todos.length,
+              itemBuilder: (BuildContext context, int index) {
+                return TodoItem(todo: todos[index].todo);
+              },
+            );
           },
         ),
       ),

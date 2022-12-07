@@ -3,3 +3,9 @@ include: package:pedantic_mono/analysis_options.yaml
 linter:
   rules:
     prefer_relative_imports: true
+
+analyzer:
+  exclude:
+    - lib/src/*.g.dart
+    - lib/src/model/*.freezed.dart
+    - lib/src/data/*.g.dart
