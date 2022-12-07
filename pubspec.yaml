@@ -12,6 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_hooks: ^0.18.5+1
+  freezed_annotation: ^2.2.0
   hooks_riverpod: ^2.1.1
   package_info_plus: ^3.0.2
   path: ^1.8.2
@@ -25,6 +26,7 @@ dev_dependencies:
   flutter_launcher_icons: ^0.11.0
   flutter_test:
     sdk: flutter
+  freezed: ^2.3.2
   pedantic_mono: ^1.20.0
   riverpod_generator: ^1.0.6
 
