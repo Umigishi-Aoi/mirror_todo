@@ -33,9 +33,7 @@ class TodoPage extends ConsumerWidget {
         ],
       ),
       body: GestureDetector(
-        onTap: () {
-          print('tap');
-        },
+        onTap: () {},
         child: ListView.builder(
           itemCount: todos.length,
           itemBuilder: (BuildContext context, int index) {
