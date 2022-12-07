@@ -11,6 +11,7 @@ dependencies:
   drift: ^2.3.0
   flutter:
     sdk: flutter
+  flutter_hooks: ^0.18.5+1
   hooks_riverpod: ^2.1.1
   path: ^1.8.2
   path_provider: ^2.0.0
