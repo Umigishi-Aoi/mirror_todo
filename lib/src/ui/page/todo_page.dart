@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
+import '../../constants/constants.dart';
 import '../dialog/input_dialog.dart';
 import 'todo_item.dart';
 
@@ -29,7 +31,16 @@ class TodoPage extends HookConsumerWidget {
         actions: [
           IconButton(
             icon: const Icon(Icons.info),
-            onPressed: () {},
+            onPressed: () async {
+              final info = await PackageInfo.fromPlatform();
+              showLicensePage(
+                context: context,
+                applicationName: info.appName,
+                applicationVersion: info.version,
+                applicationIcon: const Icon(Icons.tag_faces),
+                applicationLegalese: kDisclaimer,
+              );
+            },
           ),
           IconButton(
             icon: const Icon(Icons.add_circle_outline),
