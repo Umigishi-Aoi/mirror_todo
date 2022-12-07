@@ -29,3 +29,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  fonts:
+    - family: MPLUS1
+      fonts:
+        - asset: assets/fonts/Mplus1-Regular.ttf
