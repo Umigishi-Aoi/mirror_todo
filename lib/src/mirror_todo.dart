@@ -12,6 +12,7 @@ class MirrorTodo extends StatelessWidget {
       title: 'Mirror Todo',
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
+        fontFamily: 'MPLUS1',
       ),
       home: const TodoPage(),
     );
