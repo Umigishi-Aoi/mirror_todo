@@ -29,16 +29,16 @@ class _SystemHash {
   }
 }
 
-String $todoDatabaseHash() => r'0bea9eb9115dee3321011b305ecde7fb595dfb53';
+String $todoDatabaseHash() => r'42aadc7b9aa39753209e76b925cff1754ccd1368';
 
 /// See also [todoDatabase].
-final todoDatabaseProvider = AutoDisposeProvider<TodoDatabase>(
+final todoDatabaseProvider = Provider<TodoDatabase>(
   todoDatabase,
   name: r'todoDatabaseProvider',
   debugGetCreateSourceHash:
       const bool.fromEnvironment('dart.vm.product') ? null : $todoDatabaseHash,
 );
-typedef TodoDatabaseRef = AutoDisposeProviderRef<TodoDatabase>;
+typedef TodoDatabaseRef = ProviderRef<TodoDatabase>;
 String $todoRepositoryHash() => r'cbe9f5b08890b57d803552c193129b5d090392f6';
 
 /// See also [todoRepository].
