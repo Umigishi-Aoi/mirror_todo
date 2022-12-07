@@ -6,18 +6,22 @@ class TodoRepository {
   final TodoDatabase database;
 
   Future<void> init() async {
-    await addEntry(TodoDto.initialData0());
-    await addEntry(TodoDto.initialData1());
-    await addEntry(TodoDto.initialData2());
+    await addTodoByTodoDto(TodoDto.initialData0());
+    await addTodoByTodoDto(TodoDto.initialData1());
+    await addTodoByTodoDto(TodoDto.initialData2());
   }
 
-  Future<List<TodoDto>> fetchEntries() async {
-    final todos = await database.fetchEntries();
+  Future<List<TodoDto>> fetchTodos() async {
+    final todos = await database.fetchTodos();
     return todos.map((todo) => TodoDto(id: todo.id, todo: todo.todo)).toList();
   }
 
-  Future<void> addEntry(TodoDto todoDto) {
+  Future<void> addTodoByTodoDto(TodoDto todoDto) {
     return database.addTodo(todoDto.todo);
+  }
+
+  Future<void> addTodoByString(String text) {
+    return database.addTodo(text);
   }
 
   Future<void> deleteEntry(TodoDto todoDto) {

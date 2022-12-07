@@ -3,6 +3,8 @@ const kTodoSpacing = 16.0;
 const kDividerThickness = 2.0;
 const kDividerIndent = 0.0;
 
+const kMaxLengthOfTodo = 20;
+
 const kDisclaimer = '''
 ・Disclaimer
 By using this application, you are deemed to have agreed to this disclaimer.

@@ -60,7 +60,7 @@ class TodoPage extends HookConsumerWidget {
             icon: const Icon(Icons.add_circle_outline),
             onPressed: () async {
               await _showInputDialog(context);
-              setState.value++;
+              return ref.refresh(todoListProvider);
             },
           ),
         ],
