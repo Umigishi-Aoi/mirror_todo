@@ -50,7 +50,7 @@ final todoRepositoryProvider = AutoDisposeProvider<TodoRepository>(
       : $todoRepositoryHash,
 );
 typedef TodoRepositoryRef = AutoDisposeProviderRef<TodoRepository>;
-String $todoListHash() => r'5cbf0da391035a2893b2004ec45784bcc5213562';
+String $todoListHash() => r'efb9ead8a4afea8a3175bd5256624e02bfe02521';
 
 /// See also [todoList].
 final todoListProvider = AutoDisposeFutureProvider<List<TodoDto>>(

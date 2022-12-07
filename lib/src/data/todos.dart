@@ -16,7 +16,7 @@ class TodoDatabase extends _$TodoDatabase {
   @override
   int get schemaVersion => 1;
 
-  Future<List<Todo>> fetchEntries() {
+  Future<List<Todo>> fetchTodos() {
     return (select(todos)).get();
   }
 
