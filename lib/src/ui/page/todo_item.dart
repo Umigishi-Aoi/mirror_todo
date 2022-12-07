@@ -3,18 +3,21 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../constants/constants.dart';
+import '../../model/todo_dto.dart';
+import '../../providers.dart';
 
 class TodoItem extends HookConsumerWidget {
-  const TodoItem({super.key, required this.todo});
+  const TodoItem({super.key, required this.todoDto});
 
-  final String todo;
+  final TodoDto todoDto;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isChecked = useState(false);
     return GestureDetector(
-      onTap: () {
+      onTap: () async {
         isChecked.value = !isChecked.value;
+        await _deleteTodo(ref);
       },
       behavior: HitTestBehavior.translucent,
       child: Column(
@@ -25,14 +28,15 @@ class TodoItem extends HookConsumerWidget {
               children: [
                 Checkbox(
                   value: isChecked.value,
-                  onChanged: (bool? value) {
+                  onChanged: (bool? value) async {
                     isChecked.value = value!;
+                    await _deleteTodo(ref);
                   },
                 ),
                 const SizedBox(
                   width: kTodoSpacing,
                 ),
-                Text(todo),
+                Text(todoDto.todo),
                 const Spacer()
               ],
             ),
@@ -45,5 +49,15 @@ class TodoItem extends HookConsumerWidget {
         ],
       ),
     );
+  }
+
+  Future<void> _deleteTodo(
+    WidgetRef ref,
+  ) async {
+    await Future<void>.delayed(
+      const Duration(milliseconds: kDurationForDelete),
+    );
+    await ref.read(todoRepositoryProvider).deleteTodo(todoDto);
+    return ref.refresh(todoListProvider);
   }
 }

@@ -24,7 +24,7 @@ class TodoRepository {
     return database.addTodo(text);
   }
 
-  Future<void> deleteEntry(TodoDto todoDto) {
+  Future<void> deleteTodo(TodoDto todoDto) {
     return database.deleteTodo(todoDto.id);
   }
 }

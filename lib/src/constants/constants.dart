@@ -5,6 +5,8 @@ const kDividerIndent = 0.0;
 
 const kMaxLengthOfTodo = 20;
 
+const kDurationForDelete = 500;
+
 const kDisclaimer = '''
 ・Disclaimer
 By using this application, you are deemed to have agreed to this disclaimer.
