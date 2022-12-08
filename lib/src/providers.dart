@@ -1,4 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'data/todos.dart';
 import 'model/todo_dto.dart';
@@ -18,5 +19,5 @@ TodoRepository todoRepository(TodoRepositoryRef ref) {
 
 @riverpod
 Future<List<TodoDto>> todoList(TodoListRef ref) {
-  return ref.watch(todoRepositoryProvider).fetchTodos();
+  return ref.read(todoRepositoryProvider).fetchTodos();
 }

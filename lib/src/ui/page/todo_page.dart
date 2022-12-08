@@ -14,51 +14,6 @@ class TodoPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final futurePref = useMemoized<Future<SharedPreferences>>(
-      SharedPreferences.getInstance,
-      [],
-    );
-
-    final pref = useFuture(futurePref);
-
-    if (pref.connectionState == ConnectionState.waiting) {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
-    }
-
-    if (pref.hasError) {
-      return Center(
-        child: Text('Error: ${pref.error}'),
-      );
-    }
-
-    final initialized = pref.data!.getBool(kLaunchedKey) ?? false;
-
-    if (!initialized) {
-      final initializeDatabase = useMemoized<Future<void>>(
-        () {
-          return ref.read(todoRepositoryProvider).init();
-        },
-        [],
-      );
-
-      final initializedDatabase = useFuture(initializeDatabase);
-
-      if (initializedDatabase.connectionState == ConnectionState.waiting) {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      }
-
-      if (initializedDatabase.hasError) {
-        return Center(
-          child: Text('Error: ${initializedDatabase.error}'),
-        );
-      }
-
-      pref.data!.setBool(kLaunchedKey, true);
-    }
     final todoListAsync = ref.watch(todoListProvider);
 
     return Scaffold(
