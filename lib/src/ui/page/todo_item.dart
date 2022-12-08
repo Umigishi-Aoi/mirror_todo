@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -36,7 +38,22 @@ class TodoItem extends HookConsumerWidget {
                 const SizedBox(
                   width: kTodoSpacing,
                 ),
-                Text(todoDto.todo),
+                Row(
+                  children: todoDto.todo
+                      .map(
+                        (todoString) => Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: kTodoStringSpacing,
+                          ),
+                          child: Transform(
+                            alignment: Alignment.center,
+                            transform: Matrix4.rotationY(math.pi),
+                            child: Text(todoString),
+                          ),
+                        ),
+                      )
+                      .toList(),
+                ),
                 const Spacer()
               ],
             ),

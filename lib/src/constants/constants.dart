@@ -2,6 +2,7 @@ const kTodoItemPadding = 8.0;
 const kTodoSpacing = 16.0;
 const kDividerThickness = 2.0;
 const kDividerIndent = 0.0;
+const kTodoStringSpacing = 1.0;
 
 const kMaxLengthOfTodo = 20;
 
@@ -21,3 +22,7 @@ Customers are responsible for the communication charges when using this applicat
 The contents and information of this application are subject to change without notice.
 The contents of this policy are subject to change without notice.
 ''';
+
+const kInitialTodo0 = 'Flutter を勉強する';
+const kInitialTodo1 = '運動をする';
+const kInitialTodo2 = '映画を見る';

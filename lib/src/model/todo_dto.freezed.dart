@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$TodoDto {
   int get id => throw _privateConstructorUsedError;
-  String get todo => throw _privateConstructorUsedError;
+  List<String> get todo => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TodoDtoCopyWith<TodoDto> get copyWith => throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ abstract class $TodoDtoCopyWith<$Res> {
   factory $TodoDtoCopyWith(TodoDto value, $Res Function(TodoDto) then) =
       _$TodoDtoCopyWithImpl<$Res, TodoDto>;
   @useResult
-  $Res call({int id, String todo});
+  $Res call({int id, List<String> todo});
 }
 
 /// @nodoc
@@ -55,7 +55,7 @@ class _$TodoDtoCopyWithImpl<$Res, $Val extends TodoDto>
       todo: null == todo
           ? _value.todo
           : todo // ignore: cast_nullable_to_non_nullable
-              as String,
+              as List<String>,
     ) as $Val);
   }
 }
@@ -67,7 +67,7 @@ abstract class _$$_TodoDtoCopyWith<$Res> implements $TodoDtoCopyWith<$Res> {
       __$$_TodoDtoCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String todo});
+  $Res call({int id, List<String> todo});
 }
 
 /// @nodoc
@@ -89,22 +89,29 @@ class __$$_TodoDtoCopyWithImpl<$Res>
           : id // ignore: cast_nullable_to_non_nullable
               as int,
       todo: null == todo
-          ? _value.todo
+          ? _value._todo
           : todo // ignore: cast_nullable_to_non_nullable
-              as String,
+              as List<String>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_TodoDto implements _TodoDto {
-  const _$_TodoDto({required this.id, required this.todo});
+class _$_TodoDto extends _TodoDto {
+  const _$_TodoDto({required this.id, required final List<String> todo})
+      : _todo = todo,
+        super._();
 
   @override
   final int id;
+  final List<String> _todo;
   @override
-  final String todo;
+  List<String> get todo {
+    if (_todo is EqualUnmodifiableListView) return _todo;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_todo);
+  }
 
   @override
   String toString() {
@@ -117,11 +124,12 @@ class _$_TodoDto implements _TodoDto {
         (other.runtimeType == runtimeType &&
             other is _$_TodoDto &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.todo, todo) || other.todo == todo));
+            const DeepCollectionEquality().equals(other._todo, _todo));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, todo);
+  int get hashCode =>
+      Object.hash(runtimeType, id, const DeepCollectionEquality().hash(_todo));
 
   @JsonKey(ignore: true)
   @override
@@ -130,14 +138,15 @@ class _$_TodoDto implements _TodoDto {
       __$$_TodoDtoCopyWithImpl<_$_TodoDto>(this, _$identity);
 }
 
-abstract class _TodoDto implements TodoDto {
-  const factory _TodoDto({required final int id, required final String todo}) =
-      _$_TodoDto;
+abstract class _TodoDto extends TodoDto {
+  const factory _TodoDto(
+      {required final int id, required final List<String> todo}) = _$_TodoDto;
+  const _TodoDto._() : super._();
 
   @override
   int get id;
   @override
-  String get todo;
+  List<String> get todo;
   @override
   @JsonKey(ignore: true)
   _$$_TodoDtoCopyWith<_$_TodoDto> get copyWith =>
