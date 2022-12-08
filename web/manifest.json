@@ -8,28 +8,17 @@
     "description": "A new Flutter project.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
-    "icons": [
-        {
-            "src": "icons/Icon-192.png",
-            "sizes": "192x192",
-            "type": "image/png"
+    "icons": {
+        "16" : "icon16px.png",
+        "32" : "icon32px.png",
+        "48" : "icon48px.png",
+        "128" : "icon128px.png"
+    },
+    "browser_action": {
+        "default_icon": {
+            "19":"icon19px.png",
+            "38":"icon38px.png"
         },
-        {
-            "src": "icons/Icon-512.png",
-            "sizes": "512x512",
-            "type": "image/png"
-        },
-        {
-            "src": "icons/Icon-maskable-192.png",
-            "sizes": "192x192",
-            "type": "image/png",
-            "purpose": "maskable"
-        },
-        {
-            "src": "icons/Icon-maskable-512.png",
-            "sizes": "512x512",
-            "type": "image/png",
-            "purpose": "maskable"
-        }
-    ]
+        "default_title": "Mirror Todo"
+    }
 }

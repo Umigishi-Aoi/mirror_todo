@@ -38,3 +38,10 @@ flutter:
     - family: MPLUS1
       fonts:
         - asset: assets/fonts/Mplus1-Regular.ttf
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icons/icon128px.png"
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: "assets/icons/icon128px.png"

@@ -8,6 +8,7 @@ import 'src/mirror_todo.dart';
 import 'src/providers.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   final pref = await SharedPreferences.getInstance();
 
   final initialized = pref.getBool(kLaunchedKey) ?? false;
