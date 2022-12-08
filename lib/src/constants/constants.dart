@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 const kTodoItemPadding = 8.0;
 const kTodoSpacing = 16.0;
 const kDividerThickness = 2.0;
@@ -7,6 +9,8 @@ const kTodoStringSpacing = 1.0;
 const kMaxLengthOfTodo = 20;
 
 const kDurationForDelete = 500;
+
+const kRotationRadians = math.pi;
 
 const kLaunchedKey = 'launched';
 
