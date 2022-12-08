@@ -98,10 +98,9 @@ class __$$_TodoDtoCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_TodoDto extends _TodoDto {
+class _$_TodoDto implements _TodoDto {
   const _$_TodoDto({required this.id, required final List<String> todo})
-      : _todo = todo,
-        super._();
+      : _todo = todo;
 
   @override
   final int id;
@@ -138,10 +137,9 @@ class _$_TodoDto extends _TodoDto {
       __$$_TodoDtoCopyWithImpl<_$_TodoDto>(this, _$identity);
 }
 
-abstract class _TodoDto extends TodoDto {
+abstract class _TodoDto implements TodoDto {
   const factory _TodoDto(
       {required final int id, required final List<String> todo}) = _$_TodoDto;
-  const _TodoDto._() : super._();
 
   @override
   int get id;

@@ -8,8 +8,4 @@ class TodoDto with _$TodoDto {
     required int id,
     required List<String> todo,
   }) = _TodoDto;
-
-  const TodoDto._();
-
-  String get listToString => todo.join();
 }
