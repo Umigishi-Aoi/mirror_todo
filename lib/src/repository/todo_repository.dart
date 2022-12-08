@@ -18,7 +18,7 @@ class TodoRepository {
         .map(
           (todo) => TodoDto(
             id: todo.id,
-            todo: stringToList(todo.todo).reversed.toList(),
+            todo: todo.todo.split('').reversed.toList(),
           ),
         )
         .toList();
@@ -28,11 +28,7 @@ class TodoRepository {
     return database.addTodo(text);
   }
 
-  Future<void> deleteTodo(TodoDto todoDto) {
-    return database.deleteTodo(todoDto.id);
-  }
-
-  List<String> stringToList(String todo) {
-    return todo.split('');
+  Future<void> deleteTodo(int id) {
+    return database.deleteTodo(id);
   }
 }
