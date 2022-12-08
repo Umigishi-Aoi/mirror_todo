@@ -74,7 +74,7 @@ class TodoItem extends HookConsumerWidget {
     await Future<void>.delayed(
       const Duration(milliseconds: kDurationForDelete),
     );
-    await ref.read(todoRepositoryProvider).deleteTodo(todoDto);
+    await ref.read(todoRepositoryProvider).deleteTodo(todoDto.id);
     return ref.refresh(todoListProvider);
   }
 }
