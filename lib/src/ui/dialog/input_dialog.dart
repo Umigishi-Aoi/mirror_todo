@@ -21,10 +21,10 @@ class InputDialogState extends ConsumerState<InputDialog> {
     final controller = useTextEditingController();
 
     return AlertDialog(
-      title: const Text('Add Todo'),
+      title: const Text('ToDo追加'),
       content: TextField(
         decoration: const InputDecoration(
-          hintText: 'Enter todo',
+          hintText: 'ToDoを入力してください',
         ),
         maxLength: kMaxLengthOfTodo,
         inputFormatters: [
@@ -37,7 +37,7 @@ class InputDialogState extends ConsumerState<InputDialog> {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: const Text('Cancel'),
+          child: const Text('キャンセル'),
         ),
         TextButton(
           onPressed: () async {
@@ -49,7 +49,7 @@ class InputDialogState extends ConsumerState<InputDialog> {
             }
             Navigator.of(context).pop();
           },
-          child: const Text('Add'),
+          child: const Text('追加'),
         ),
       ],
     );
