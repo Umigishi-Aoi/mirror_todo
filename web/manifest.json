@@ -1,0 +1,24 @@
+{
+    "name": "mirror_todo",
+    "short_name": "mirror_todo",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#0175C2",
+    "theme_color": "#0175C2",
+    "description": "A new Flutter project.",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": {
+        "16" : "icon16px.png",
+        "32" : "icon32px.png",
+        "48" : "icon48px.png",
+        "128" : "icon128px.png"
+    },
+    "browser_action": {
+        "default_icon": {
+            "19":"icon19px.png",
+            "38":"icon38px.png"
+        },
+        "default_title": "Mirror Todo"
+    }
+}
