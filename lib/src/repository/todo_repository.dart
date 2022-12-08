@@ -1,15 +1,15 @@
+import '../constants/constants.dart';
 import '../data/todos.dart';
 import '../model/todo_dto.dart';
-import '../util/util.dart';
 
 class TodoRepository {
   const TodoRepository({required this.database});
   final TodoDatabase database;
 
   Future<void> init() async {
-    await addTodoByTodoDto(TodoDto.initialTodo0());
-    await addTodoByTodoDto(TodoDto.initialTodo1());
-    await addTodoByTodoDto(TodoDto.initialData2());
+    await addTodoByString(kInitialTodo0);
+    await addTodoByString(kInitialTodo1);
+    await addTodoByString(kInitialTodo2);
   }
 
   Future<List<TodoDto>> fetchTodos() async {
@@ -24,15 +24,15 @@ class TodoRepository {
         .toList();
   }
 
-  Future<void> addTodoByTodoDto(TodoDto todoDto) {
-    return database.addTodo(todoDto.listToString);
-  }
-
   Future<void> addTodoByString(String text) {
     return database.addTodo(text);
   }
 
   Future<void> deleteTodo(TodoDto todoDto) {
     return database.deleteTodo(todoDto.id);
+  }
+
+  List<String> stringToList(String todo) {
+    return todo.split('');
   }
 }
