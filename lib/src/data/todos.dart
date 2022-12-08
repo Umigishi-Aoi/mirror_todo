@@ -1,5 +1,6 @@
 import 'package:drift/drift.dart';
 
+import '../constants/constants.dart';
 import 'connection/connection.dart' as impl;
 
 part 'todos.g.dart';
@@ -26,5 +27,11 @@ class TodoDatabase extends _$TodoDatabase {
 
   Future<void> deleteTodo(int id) {
     return (delete(todos)..where((tbl) => tbl.id.equals(id))).go();
+  }
+
+  Future<void> init() async {
+    await addTodo(kInitialTodo0);
+    await addTodo(kInitialTodo1);
+    await addTodo(kInitialTodo2);
   }
 }

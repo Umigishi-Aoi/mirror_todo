@@ -18,5 +18,5 @@ TodoRepository todoRepository(TodoRepositoryRef ref) {
 
 @riverpod
 Future<List<TodoDto>> todoList(TodoListRef ref) {
-  return ref.watch(todoRepositoryProvider).fetchTodos();
+  return ref.read(todoRepositoryProvider).fetchTodos();
 }
