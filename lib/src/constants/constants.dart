@@ -7,6 +7,8 @@ const kMaxLengthOfTodo = 20;
 
 const kDurationForDelete = 500;
 
+const kLaunchedKey = 'launched';
+
 const kDisclaimer = '''
 ・Disclaimer
 By using this application, you are deemed to have agreed to this disclaimer.

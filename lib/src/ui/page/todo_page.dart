@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../constants/constants.dart';
 import '../../providers.dart';
@@ -13,27 +14,51 @@ class TodoPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final initializeDatabase = useMemoized<Future<void>>(
-      () {
-        return ref.read(todoRepositoryProvider).init();
-      },
+    final futurePref = useMemoized<Future<SharedPreferences>>(
+      SharedPreferences.getInstance,
       [],
     );
 
-    final isInitialized = useFuture(initializeDatabase);
+    final pref = useFuture(futurePref);
 
-    if (isInitialized.connectionState == ConnectionState.waiting) {
+    if (pref.connectionState == ConnectionState.waiting) {
       return const Center(
         child: CircularProgressIndicator(),
       );
     }
 
-    if (isInitialized.hasError) {
+    if (pref.hasError) {
       return Center(
-        child: Text('Error: ${isInitialized.error}'),
+        child: Text('Error: ${pref.error}'),
       );
     }
 
+    final initialized = pref.data!.getBool(kLaunchedKey) ?? false;
+
+    if (!initialized) {
+      final initializeDatabase = useMemoized<Future<void>>(
+        () {
+          return ref.read(todoRepositoryProvider).init();
+        },
+        [],
+      );
+
+      final initializedDatabase = useFuture(initializeDatabase);
+
+      if (initializedDatabase.connectionState == ConnectionState.waiting) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      }
+
+      if (initializedDatabase.hasError) {
+        return Center(
+          child: Text('Error: ${initializedDatabase.error}'),
+        );
+      }
+
+      pref.data!.setBool(kLaunchedKey, true);
+    }
     final todoListAsync = ref.watch(todoListProvider);
 
     return Scaffold(
@@ -69,7 +94,7 @@ class TodoPage extends HookConsumerWidget {
         },
         child: todoListAsync.when(
           error: (e, st) => Text(e.toString()),
-          loading: CircularProgressIndicator.new,
+          loading: () => const Center(child: CircularProgressIndicator()),
           data: (todos) {
             return ListView.builder(
               itemCount: todos.length,
