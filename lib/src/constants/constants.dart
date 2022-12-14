@@ -1,5 +1,7 @@
 import 'dart:math' as math;
 
+const kDisplayWidthThreshold = 600.0;
+
 const kTodoItemPadding = 8.0;
 const kTodoSpacing = 16.0;
 const kDividerThickness = 2.0;
@@ -29,3 +31,5 @@ const kDisclaimer = '''
 const kInitialTodo0 = 'Flutter を勉強する';
 const kInitialTodo1 = '運動をする';
 const kInitialTodo2 = '映画を見る';
+
+const kAppIconPath = 'assets/icons/icon128px.png';
