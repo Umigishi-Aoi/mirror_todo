@@ -26,7 +26,7 @@ class TodoPage extends HookConsumerWidget {
                 context: context,
                 applicationName: info.appName,
                 applicationVersion: info.version,
-                applicationIcon: const Icon(Icons.tag_faces),
+                applicationIcon: Image.asset(kAppIconPath),
                 applicationLegalese: kDisclaimer,
               );
             },

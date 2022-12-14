@@ -29,3 +29,5 @@ const kDisclaimer = '''
 const kInitialTodo0 = 'Flutter を勉強する';
 const kInitialTodo1 = '運動をする';
 const kInitialTodo2 = '映画を見る';
+
+const kAppIconPath = 'assets/icons/icon128px.png';
