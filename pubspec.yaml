@@ -39,6 +39,9 @@ flutter:
       fonts:
         - asset: assets/fonts/Mplus1-Regular.ttf
 
+  assets:
+    - assets/icons/      
+
 flutter_icons:
   android: true
   ios: true
